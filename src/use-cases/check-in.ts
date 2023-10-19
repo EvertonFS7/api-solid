@@ -7,18 +7,18 @@ import { getDistanceBetweenCoordinates } from '@/utils/getDistanceBetweenCordina
 import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
 import { MaxDistanceError } from './errors/max-distance-error'
 
-interface CheckinUseCaseRequest {
+interface CheckInUseCaseRequest {
   userId: string
   gymId: string
   userLatitude: number
   userLongitude: number
 }
 
-interface CheckinUseCaseResponse {
+interface CheckInUseCaseResponse {
   checkIn: CheckIn
 }
 
-export class CheckinUseCase {
+export class CheckInUseCase {
   constructor(
     private CheckInsRepository: CheckInsRepository,
     private GymsRepository: GymsRepository,
@@ -29,7 +29,7 @@ export class CheckinUseCase {
     userId,
     userLatitude,
     userLongitude,
-  }: CheckinUseCaseRequest): Promise<CheckinUseCaseResponse> {
+  }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
     const gym = await this.GymsRepository.findById(gymId)
 
     if (!gym) {
